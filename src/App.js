@@ -1,21 +1,18 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import Dashboard from './pages/Dashboard';
-import ProtectedRoute from './components/ProtectedRoute'; 
-// import RentalForm from './pages/rental-form/RentalForm';
-
+import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/car_rental_app">
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
-
         <Route
           path="/"
           element={
@@ -24,7 +21,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        {/* <Route path="/rental-form" element={<RentalForm />} /> */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
   );

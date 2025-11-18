@@ -1,7 +1,7 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { login } from '../services/authService';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';   // ✅ import Link
 
 export default function Login() {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -26,6 +26,7 @@ export default function Login() {
       <form onSubmit={handleSubmit(onSubmit)} className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
 
+        {/* Email */}
         <div className="mb-4">
           <label className="block mb-1 font-medium">Email</label>
           <input
@@ -36,6 +37,7 @@ export default function Login() {
           {errors.email && <span className="text-red-500 text-sm">Email is required</span>}
         </div>
 
+        {/* Password */}
         <div className="mb-6">
           <label className="block mb-1 font-medium">Password</label>
           <input
@@ -47,17 +49,24 @@ export default function Login() {
           {errors.password && <span className="text-red-500 text-sm">Password is required</span>}
         </div>
 
+        {/* Submit */}
         <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition">
           Login
         </button>
 
+        {/* Forgot Password */}
         <div className="mt-4 text-center">
-          <a href="/forgot-password" className="text-sm text-blue-600 hover:underline">Forgot Password?</a>
+          <Link to="forgot-password" className="text-sm text-blue-600 hover:underline">
+            Forgot Password?
+          </Link>
         </div>
 
+        {/* Register Link */}
         <div className="mt-2 text-center">
           <span className="text-sm">Don't have an account? </span>
-          <a href="/register" className="text-sm text-blue-600 hover:underline">Register</a>
+          <Link to="register" className="text-sm text-blue-600 hover:underline">
+            Register
+          </Link>
         </div>
       </form>
     </div>
